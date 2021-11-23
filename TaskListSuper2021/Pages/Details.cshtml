@@ -1,0 +1,67 @@
+﻿@page
+@using System.Security.Claims
+@model TaskListSuper2021.Pages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    var userId = User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TaskItem</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskItem.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskItem.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskItem.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskItem.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskItem.FinishDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskItem.FinishDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskItem.Finished)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskItem.Finished)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskItem.Created)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskItem.Created)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskItem.Author)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskItem.Author.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskItem.Receiver)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskItem.Receiver.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (Model.TaskItem.AuthorId == userId)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.TaskItem.TaskId" class="btn">Edit</a>
+    }
+    <a asp-page="./Tasks">Back to Tasks For Me</a> |
+    <a asp-page="./TasksMade">Back to Tasks From Me</a>
+</div>

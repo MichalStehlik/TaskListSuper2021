@@ -1,0 +1,55 @@
+﻿@page
+@model TaskListSuper2021.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TaskItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TaskItem.TaskId" />
+            <div class="form-group">
+                <label asp-for="TaskItem.Name" class="control-label"></label>
+                <input asp-for="TaskItem.Name" class="form-control" />
+                <span asp-validation-for="TaskItem.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskItem.Description" class="control-label"></label>
+                <input asp-for="TaskItem.Description" class="form-control" />
+                <span asp-validation-for="TaskItem.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskItem.FinishDate" class="control-label"></label>
+                <input asp-for="TaskItem.FinishDate" class="form-control" />
+                <span asp-validation-for="TaskItem.FinishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TaskItem.Finished" /> @Html.DisplayNameFor(model => model.TaskItem.Finished)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskItem.ReceiverId" class="control-label"></label>
+                <select asp-for="TaskItem.ReceiverId" class="form-control" asp-items="ViewBag.ReceiverId"></select>
+                <span asp-validation-for="TaskItem.ReceiverId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./TasksMade">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
