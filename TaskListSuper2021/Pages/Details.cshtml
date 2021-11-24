@@ -60,7 +60,7 @@
 <div>
     @if (Model.TaskItem.AuthorId == userId)
     {
-        <a asp-page="./Edit" asp-route-id="@Model.TaskItem.TaskId" class="btn">Edit</a>
+        <a asp-page="./Edit" asp-route-id="@Model.TaskItem.TaskId" class="btn btn-primary">Edit</a>
     }
     <a asp-page="./Tasks">Back to Tasks For Me</a> |
     <a asp-page="./TasksMade">Back to Tasks From Me</a>

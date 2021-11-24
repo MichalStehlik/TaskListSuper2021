@@ -17,7 +17,10 @@ namespace TaskListSuper2021.Pages
     public class CreateModel : PageModel
     {
         private readonly TaskListSuper2021.Data.ApplicationDbContext _context;
-
+        [TempData]
+        public string SuccessMessage { get; set; }
+        [TempData]
+        public string ErrorMessage { get; set; }
         public CreateModel(TaskListSuper2021.Data.ApplicationDbContext context)
         {
             _context = context;
@@ -52,8 +55,16 @@ namespace TaskListSuper2021.Pages
                 ReceiverId = TaskItem.ReceiverId,
                 Created = DateTime.Now,
             };
-            _context.Tasks.Add(newTask);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Tasks.Add(newTask);
+                await _context.SaveChangesAsync();
+                SuccessMessage = "A new task was created.";
+            }
+            catch
+            {
+                ErrorMessage = "There was an error.";
+            }
 
             return RedirectToPage("./TasksMade");
         }
