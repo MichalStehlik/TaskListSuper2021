@@ -17,9 +17,6 @@
                 @Html.DisplayNameFor(model => model.TaskItem[0].Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TaskItem[0].Description)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.TaskItem[0].FinishDate)
             </th>
             <th>
@@ -44,9 +41,6 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FinishDate)
             </td>
             <td>
@@ -56,10 +50,10 @@
                 @Html.DisplayFor(modelItem => item.Created)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author.Id)
+                @Html.DisplayFor(modelItem => item.Author.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Receiver.Id)
+                @Html.DisplayFor(modelItem => item.Receiver.Email)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.TaskId">Edit</a> |
