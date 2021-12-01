@@ -41,7 +41,15 @@ namespace TaskListSuper2021
                 } 
                 )
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages();
+            services.AddAuthorization(options => {
+                options.AddPolicy("IsAdministrator", policy => {
+                    //policy.RequireRole("Administrator");
+                    policy.RequireClaim("admin","1");
+                });
+            });
+            services.AddRazorPages(options => {
+                options.Conventions.AuthorizeAreaFolder("Admin","/","IsAdministrator");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
